@@ -1,0 +1,156 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-main: #070623;
+    --bg-menu: royalblue;
+    --color-text: white;
+}
+
+body {
+    color: var(--color-text);
+    background-color: var(--bg-main);
+    font-family: 'League Spartan', sans-serif;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.nav {
+    --menu-mostrar: polygon(20% 0%, 20% 0, 0 100%, 0 100%);
+    --icon-abrir: 1;
+    --puntero-abrir: unset;
+
+    --icon-cerrar: 0;
+    --puntero-cerrar: none;
+
+
+    display: grid;
+    grid-template-columns: max-content max-content;
+    align-items: center;
+    justify-content: space-between;
+    grid-template-areas: "logo menu";
+    height: 100px;
+}
+
+.nav:has(input[type="checkbox"]:checked) {
+    --menu-mostrar: clip-path: polygon(1% 0, 1% 0, 0 100%, 0% 100%);
+    ;
+
+    --icon-abrir: 0;
+    --puntero-abrir: none;
+
+    --icon-cerrar: 1;
+    --puntero-cerrar: unset;
+}
+
+.nav__menu {
+    position: absolute;
+    inset: 0;
+
+    display: grid;
+    place-content: center;
+    text-align: center;
+    gap: 1rem;
+    background-color: var(--bg-menu);
+    list-style: none;
+    clip-path: var(--menu-mostrar);
+
+    transition: clip-path .5s;
+}
+
+.nav__link {
+    font-size: 1.2rem;
+    text-decoration: none;
+    color: white;
+}
+
+.nav__label {
+    grid-area: menu;
+    z-index: 100;
+}
+
+[type="checkbox"] {
+    display: none;
+}
+
+.nav__icon {
+    width: 40px;
+}
+
+.nav__label--open {
+    opacity: var(--icon-abrir);
+    pointer-events: var(--puntero-abrir);
+
+}
+
+.nav__label--close {
+    opacity: var(--icon-cerrar);
+    pointer-events: var(--puntero-cerrar);
+}
+
+/* Main */
+
+.main__section {
+    display: grid;
+    gap: 3rem;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+}
+
+.main__texts {
+    order: 1;
+}
+
+.main__title {
+    font-size: 5rem;
+    letter-spacing: 1.2rem;
+}
+
+.main__paragraph {
+    font-size: 1.2rem;
+    font-weight: 300;
+    line-height: 1.5rem;
+}
+
+.main__img {
+    width: 100%;
+}
+
+/* Cards */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
+    align-items: center;
+    gap: 2rem;
+    padding: 80px 0;
+}
+
+.cards__item {
+    padding: 2rem 1.5rem;
+    border: 2px solid;
+    color: antiquewhite;
+}
+
+.cards__title {
+    font-size: 1rem;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
+
+.cards__info {
+    font-size: 1.3rem;
+    font-weight: 300;
+}
+
+@media (max-width: 768px) {
+    .main__section {
+        grid-template-columns: 1fr;
+    }
+}
